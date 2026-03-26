@@ -2,6 +2,7 @@ from flask import  Blueprint, render_template, request, redirect, url_for,flash
 from models import User,db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_required, current_user, login_user, logout_user
+from routes.main.main import main_routes
 
 
 auth_routes = Blueprint('auth_routes', __name__)
@@ -40,7 +41,7 @@ def register():
             db.session.commit()
 
             login_user(user)
-            return redirect(url_for('auth.login'))
+            return redirect(url_for('main_routes.home'))
 
         except Exception as e:
             db.session.rollback()
@@ -57,7 +58,7 @@ def login():
 
         if not email or not password:
             flash('Заполните поля', 'danger')
-            return render_template('auth/logib.html')
+            return render_template('auth/login.html')
 
         user= User.query.filter_by(email=email).first()
 
@@ -71,7 +72,7 @@ def login():
 
         login_user(user)
         flash('Вы успешно вошли', 'success')
-        return redirect(url_for('index.html'))
+        return redirect(url_for('main_routes.home'))
 
     return render_template('auth/login.html')
 
@@ -80,4 +81,4 @@ def login():
 def logout():
     logout_user()
     flash('Вы вышли из аккаунта', 'success')
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('auth_routes.login'))
