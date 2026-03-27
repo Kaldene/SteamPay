@@ -6,5 +6,62 @@ SteamPay | Главная
 
 
 {% block content %}
-<h1>Главная</h1>
+<section class="section-hero">
+    <div class="container-hero">
+        <div class="hero-banner">
+             <div class="info-hero">
+                <h1>Игры и пополнение Steam  без лишних вопросов</h1>
+                 <p>Покупайте топовые игры и пополняйте аккаунт</p>
+                 <p>Steam быстро и выгодно</p>
+             </div>
+
+            <div class="button-hero">
+                <a href="#" class="catalog">Смотреть каталог</a>
+                <a href="#" class="steampay">Пополнить Steam</a>
+            </div>
+        </div>
+        <div class="slider-hero">
+            <div class="slide-hero">
+                <div class="slide-icon">
+                    <img src="{{ url_for('static', filename='images/icons/delivery.png') }}" alt="Доставка">
+                </div>
+                <div class="slide-content">
+                    <h2>Мгновенная доставка</h2>
+                    <p>Быстрое получение цифровых товаров</p>
+                </div>
+            </div>
+
+            <div class="slide-hero">
+                <div class="slide-icon">
+                    <img src="{{ url_for('static', filename='images/icons/payment.png') }}" alt="Оплата">
+                </div>
+                <div class="slide-content">
+                    <h2>Удобная оплата</h2>
+                    <p>Несколько способов оплаты на выбор</p>
+                </div>
+            </div>
+
+            <div class="slide-hero">
+                <div class="slide-icon">
+                    <img src="{{ url_for('static', filename='images/icons/games.png') }}" alt="Товары">
+                </div>
+                <div class="slide-content">
+                    <h2>Популярные товары</h2>
+                    <p>Актуальные игры и цифровые позиции</p>
+                </div>
+            </div>
+
+            <div class="slide-hero">
+                <div class="slide-icon">
+                    <img src="{{ url_for('static', filename='images/icons/support.png') }}" alt="Поддержка">
+                </div>
+                <div class="slide-content">
+                    <h2>24/7 Поддержка</h2>
+                    <p>Помогаем по вопросам заказа и оплаты</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
