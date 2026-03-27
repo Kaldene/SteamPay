@@ -2,8 +2,7 @@ from flask import  Blueprint, render_template, request, redirect, url_for,flash
 from models import User,db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_required, current_user, login_user, logout_user
-from routes.main.main import main_routes
-
+from datetime import timedelta
 
 auth_routes = Blueprint('auth_routes', __name__)
 
@@ -40,7 +39,7 @@ def register():
             db.session.add(user)
             db.session.commit()
 
-            login_user(user)
+            login_user(user,remember=True, duration=timedelta(days=30))
             return redirect(url_for('main_routes.home'))
 
         except Exception as e:
@@ -70,7 +69,7 @@ def login():
             flash('Неверный пароль', 'danger')
             return redirect(url_for('auth.login'))
 
-        login_user(user)
+        login_user(user, remember=True, duration=timedelta(days=30))
         flash('Вы успешно вошли', 'success')
         return redirect(url_for('main_routes.home'))
 

@@ -5,6 +5,7 @@ from config import Config
 from models import db,User
 from routes.auth.routes import auth_routes
 from routes.main.main import main_routes
+from routes.steam_topup.steam_topup import steam_topup, steam_routes
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -16,6 +17,7 @@ login_manager.login_view = 'auth.login'
 
 app.register_blueprint(auth_routes)
 app.register_blueprint(main_routes)
+app.register_blueprint(steam_routes)
 
 @login_manager.user_loader
 def load_user(user_id):

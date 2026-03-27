@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}
+SteamPay | Пополнение Steam
+{% endblock %}
+
+{% block content %}
+<main class="page">
+    <div class="content">
+        <section>
+            <div class="info-steam">
+                <h1 class="title">Пополнение Steam<br>без лишних шагов</h1>
+                <p class="subtitle">
+                    Пополните баланс Steam за пару минут. Введите логин, выберите сумму<br>
+                    и оплатите удобным способом в привычном стиле GameMarket.
+                </p>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h3>Введите Steam login</h3>
+                        <p>Укажите логин аккаунта, который нужно пополнить.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h3>Выберите сумму пополнения</h3>
+                        <p>Можно выбрать готовую сумму или ввести свою вручную.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h3>Оплатите удобным способом</h3>
+                        <p>После оплаты баланс будет зачислен максимально быстро.</p>
+                    </div>
+                </div>
+            </div>
+
+            <form
+                    action="{{ url_for('steam_routes.steam_topup') }}"
+                    method="POST"
+                    id="steam-topup-form"
+                    class="form-card"
+            >
+                <h2>Данные для пополнения</h2>
+
+                <div class="field">
+                    <label for="steam-login">Ваш Steam login</label>
+                    <input
+                            type="text"
+                            id="steam-login"
+                            name="steam_login"
+                            placeholder="Введите Steam login"
+                            required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="amount-input">Сумма пополнения</label>
+                    <input
+                            type="number"
+                            id="amount-input"
+                            name="amount"
+                            placeholder="Введите сумму, например 1000"
+                            min="1"
+                            required
+                    >
+                </div>
+
+                <div class="amount-grid">
+                    <button type="button" class="amount-btn">500 ₽</button>
+                    <button type="button" class="amount-btn active">1000 ₽</button>
+                    <button type="button" class="amount-btn">2500 ₽</button>
+                    <button type="button" class="amount-btn">5000 ₽</button>
+                </div>
+
+                <div class="payment-wrapper">
+                    <label>Способ оплаты</label>
+                    <div class="payment-methods">
+                        <button type="button" class="payment active">VISA</button>
+                        <button type="button" class="payment">Mastercard</button>
+                        <button type="button" class="payment">МИР</button>
+                        <button type="button" class="payment">СБП</button>
+                    </div>
+                </div>
+
+                <input type="hidden" name="payment_method" id="payment-method-input" value="VISA">
+            </form>
+        </section>
+
+        <aside class="summary-card">
+            <div class="summary-top">
+                <div class="steam-icon">
+                    <img src="{{ url_for('static', filename='images/icons/gamepad.png') }}" alt="Steam">
+                </div>
+                <div class="summary-name">Steam</div>
+            </div>
+
+            <div class="summary-list">
+                <div class="summary-row">
+                    <span>Сумма пополнения</span>
+                    <strong id="summary-amount">1000 ₽</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Комиссия</span>
+                    <span>0 ₽</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Способ оплаты</span>
+                    <span id="summary-payment">VISA</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>К оплате</span>
+                    <strong id="summary-total">1000 ₽</strong>
+                </div>
+            </div>
+
+            <button type="button" class="pay-btn" id="submit-topup">
+                Пополнить баланс
+            </button>
+
+            <p class="note">
+                Нажимая кнопку, вы соглашаетесь с правилами сервиса и условиями оплаты.
+            </p>
+        </aside>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/steam_topup.js') }}"></script>
+{% endblock %}
