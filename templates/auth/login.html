@@ -8,7 +8,7 @@ SteamPay | Вход
 {% block content %}
 <section class="section-login">
     <div class="container-login">
-        <form method="post" action="{{ url_for('auth_routes.login') }}" class="form-login">
+        <form method="post" action="{{ url_for('auth_routes.login') }}" class="form-login" id="loginForm">
 
             <h2>Вход</h2>
 
@@ -16,12 +16,15 @@ SteamPay | Вход
                 <input type="email" id="email" name="email" placeholder="Email" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group password-group">
                 <input type="password" id="password" name="password" placeholder="Пароль" required>
+                <button type="button" id="togglePassword" class="toggle-password-btn">Показать</button>
             </div>
 
+            <div id="errorMessage" class="error-message"></div>
+
             <div class="login-btn">
-                <button type="submit">Войти</button>
+                <button type="submit" id="submitBtn">Войти</button>
             </div>
 
             <div class="login-button">
@@ -30,4 +33,7 @@ SteamPay | Вход
         </form>
     </div>
 </section>
+{% endblock %}
+{% block script %}
+<script src="{{url_for('static', filename='js/auth/login.js')}}"></script>
 {% endblock %}
