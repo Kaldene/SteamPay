@@ -67,7 +67,7 @@ def login():
 
         if not check_password_hash(user.password_hash, password):
             flash('Неверный пароль', 'danger')
-            return redirect(url_for('auth.login'))
+            return redirect(url_for('auth_routes.login'))
 
         login_user(user, remember=True, duration=timedelta(days=30))
         flash('Вы успешно вошли', 'success')

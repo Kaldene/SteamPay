@@ -51,10 +51,10 @@ SteamPay | Пополнение Steam
                 <h2>Данные для пополнения</h2>
 
                 <div class="field">
-                    <label for="steam-login">Ваш Steam login</label>
+                    <label for="steam_login">Ваш Steam login</label>
                     <input
                             type="text"
-                            id="steam-login"
+                            id="steam_login"
                             name="steam_login"
                             placeholder="Введите Steam login"
                             required
@@ -62,13 +62,14 @@ SteamPay | Пополнение Steam
                 </div>
 
                 <div class="field">
-                    <label for="amount-input">Сумма пополнения</label>
+                    <label for="amount">Сумма пополнения</label>
                     <input
                             type="number"
-                            id="amount-input"
+                            id="amount"
                             name="amount"
                             placeholder="Введите сумму, например 1000"
                             min="1"
+                            step="1"
                             required
                     >
                 </div>
@@ -91,6 +92,8 @@ SteamPay | Пополнение Steam
                 </div>
 
                 <input type="hidden" name="payment_method" id="payment-method-input" value="VISA">
+
+                <div id="steam-topup-error" class="error-message" role="alert" hidden></div>
             </form>
         </section>
 
@@ -136,6 +139,6 @@ SteamPay | Пополнение Steam
 </main>
 {% endblock %}
 
-{% block scripts %}
+{% block script %}
 <script src="{{ url_for('static', filename='js/steam_topup.js') }}"></script>
 {% endblock %}
